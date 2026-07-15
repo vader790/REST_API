@@ -1,7 +1,14 @@
 from pydantic import BaseModel
 
 class Customer(BaseModel):
-    first_name: str
-    last_name: str
+    customerId: str
+    firstName: str
+    lastName: str
     email: str
     phone: str
+    streetAddress: str
+    city: str
+    state: str
+    zipCode: str
+    username: str
+    password: str
