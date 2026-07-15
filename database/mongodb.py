@@ -4,10 +4,10 @@ from pymongo import MongoClient
 
 # Load environment variables from .env file
 load_dotenv()
-url = os.getenv("MONGO_URL")
+uri = os.getenv("MONGO_URI")
 db_name = os.getenv("MONGODB_DB")
 
-client = MongoClient(url)
+client = MongoClient(uri)
 
 db = client[db_name]
 

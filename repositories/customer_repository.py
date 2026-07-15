@@ -8,9 +8,7 @@ class CustomerRepository:
         )
 
     def getOneCustomer(self, customerId):
-        return list(
-            customerCollection.find({"customerId": customerId}, {"_id": 0})
-        )
+        return customerCollection.find_one({"customerId": customerId}, {"_id": 0})
     
     def createCustomer(self, customer):
         customerCollection.insert_one(customer)

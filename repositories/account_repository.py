@@ -7,10 +7,8 @@ class AccountRepository:
             accountCollection.find({}, {"_id": 0})
         )
 
-    def getOneAccounts(self, accountId):
-        return list(
-            accountCollection.find({"accountId": accountId}, {"_id": 0})
-        )
+    def getOneAccount(self, accountId):
+        return accountCollection.find_one({"accountId": accountId}, {"_id": 0})
     
     def createAccount(self, account):
         accountCollection.insert_one(account)

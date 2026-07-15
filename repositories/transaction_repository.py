@@ -8,9 +8,7 @@ class TransactionRepository:
         )
 
     def getOneTransaction(self, transactionId, accountId):
-        return list(
-            transactionCollection.find({"transactionId": transactionId, "accountId": accountId}, {"_id": 0})
-        )
+        return transactionCollection.find_one({"transactionId": transactionId, "accountId": accountId}, {"_id": 0})
     
     def createTransaction(self, transaction):
         transactionCollection.insert_one(transaction)
@@ -24,8 +22,8 @@ class TransactionRepository:
         )
         return result.modified_count
     
-    def deleteTransaction(self, transactionId):
+    def deleteTransaction(self, transactionId, accountId):
         result = transactionCollection.delete_one(
-            {"transactionId": transactionId}
+            {"transactionId": transactionId, "accountId": accountId}
         )
         return result.deleted_count
