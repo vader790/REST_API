@@ -27,3 +27,9 @@ class CustomerRepository:
             {"customerId": customerId}
         )
         return result.deleted_count
+
+    def getCustomerByUsername(self, username):
+        return customerCollection.find_one(
+            {"username": username},
+            {"_id": 0}
+        )

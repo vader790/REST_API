@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from services.customer_service import CustomerService
 from models.customer import Customer
+from models.loginRequest import LoginRequest
 
 router = APIRouter()
 
@@ -30,3 +31,8 @@ def updateCustomer(customerId: str, customer: Customer):
 @router.delete("/api/customers/{customerId}")
 def deleteCustomer(customerId: str):
     return service.deleteCustomer(customerId)
+
+# Defines the route to login a customer
+@router.post("/api/login")
+def loginCustomer(loginRequest: LoginRequest):
+    return service.loginCustomer(loginRequest.username, loginRequest.password)

@@ -9,6 +9,14 @@ class AccountRepository:
 
     def getOneAccount(self, accountId):
         return accountCollection.find_one({"accountId": accountId}, {"_id": 0})
+
+    def getAccountsByCustomer(self, customerId):
+        return list(
+            accountCollection.find(
+                {"customerId": customerId},
+                {"_id": 0}
+            )
+        )
     
     def createAccount(self, account):
         accountCollection.insert_one(account)
@@ -27,3 +35,10 @@ class AccountRepository:
             {"accountId": accountId}
         )
         return result.deleted_count
+
+    def updateBalance(self, accountId, balance):
+        result = accountCollection.update_one(
+            {"accountId": accountId},
+            {"$set": {"balance": balance}}
+        )
+        return result.modified_count

@@ -16,6 +16,11 @@ def getAccounts():
 def getAccount(accountId: str):
     return service.getOneAccount(accountId)
 
+# Defines the route to get all accounts for a specific customer
+@router.get("/api/accounts/customer/{customerId}")
+def getAccountsByCustomer(customerId: str):
+    return service.getAccountsByCustomer(customerId)
+
 # Defines the route to create a new account
 @router.post("/api/accounts")
 def createAccount(account: Account):
@@ -30,3 +35,13 @@ def updateAccount(accountId: str, account: Account):
 @router.delete("/api/accounts/{accountId}")
 def deleteAccount(accountId: str):
     return service.deleteAccount(accountId)
+
+# Defines the route to deposit money into an account
+@router.post("/api/accounts/{accountId}/deposit")
+def deposit(accountId: str, amount: float):
+    return service.deposit(accountId, amount)
+
+# Defines the route to withdraw money from an account
+@router.post("/api/accounts/{accountId}/withdraw")
+def withdraw(accountId: str, amount: float):
+    return service.withdraw(accountId, amount)
